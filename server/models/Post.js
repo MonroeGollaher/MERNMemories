@@ -1,12 +1,11 @@
 import mongoose from 'mongoose';
-const Schema = mongoose.Schema
 
-const postSchema = new Schema({
-  title: { type: String, required: true },
-  message: { type: String, required: true },
-  creator: { type: String, required: true },
+const postSchema = new mongoose.Schema({
+  title: String,
+  message: String,
+  creator: String,
   tags: [String],
-  selectedFile: { type: String, required: true },
+  selectedFile: String,
   likeCount: {
     type: Number,
     default: 0,
@@ -18,4 +17,5 @@ const postSchema = new Schema({
 })
 
 let Post = mongoose.model('Post', postSchema);
+
 export default Post;
