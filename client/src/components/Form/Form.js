@@ -33,7 +33,7 @@ const Form = () => {
         autoComplete="off" 
         noValidate 
         className={ `${ classes.root } ${ classes.form }` } 
-        onChange={ handleSubmit }
+        onSubmit={ handleSubmit }
       >
         <Typography variant="h6">Creating a memory</Typography>
         <TextField 
