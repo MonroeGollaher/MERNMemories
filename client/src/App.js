@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Container, AppBar, Typography, Grow, Grid } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 import { getPosts } from './actions/posts'
-import Form from './components/Form/Form.js'
-import Posts from './components/Posts/Posts'
+import FormComponent from './components/Form/FormComponent.js'
+import PostsComponent from './components/Posts/PostsComponent'
 // @ts-ignore
 import memories from './imgs/memories.png'
 import useStyles from './styles'
@@ -27,10 +27,10 @@ const App = () => {
         <Container>
           <Grid container justify="space-between" alignItems="stretch" spacing={ 3 }>
             <Grid item xs={ 12 } sm={ 7 } >
-              <Posts setCurrentId={ setCurrentId }/> 
+              <PostsComponent setCurrentId={ setCurrentId }/> 
             </Grid>
             <Grid item xs={ 12 } sm={ 4 }>
-              <Form currentId={ currentId } setCurrentId={ setCurrentId }/> 
+              <FormComponent currentId={ currentId } setCurrentId={ setCurrentId }/> 
             </Grid>
           </Grid>
         </Container>

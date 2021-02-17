@@ -7,7 +7,7 @@ import { createPost, updatePost } from "../../actions/posts"
 import { useSelector } from 'react-redux'
 import { useEffect } from "react"
 
-const Form = ({ currentId, setCurrentId }) => {
+const FormComponent = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
     creator: '',
     title: '',
@@ -115,4 +115,4 @@ const Form = ({ currentId, setCurrentId }) => {
   )
 }
 
-export default Form
+export default FormComponent
