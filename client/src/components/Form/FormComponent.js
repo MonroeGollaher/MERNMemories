@@ -1,11 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { TextField, Button, Typography, Paper } from '@material-ui/core'
 import FileBase from 'react-file-base64'
 import useStyles from './styles'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { createPost, updatePost } from "../../actions/posts"
-import { useSelector } from 'react-redux'
-import { useEffect } from "react"
 
 const FormComponent = ({ currentId, setCurrentId }) => {
   const [postData, setPostData] = useState({
@@ -17,7 +15,7 @@ const FormComponent = ({ currentId, setCurrentId }) => {
   })
 
   // @ts-ignore
-  const getOne = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null )
+  const getOne = useSelector((state) => (currentId ? state.posts.find((post) => post._id === currentId) : null))
 
   const classes = useStyles()
   const dispatch = useDispatch()
@@ -26,13 +24,13 @@ const FormComponent = ({ currentId, setCurrentId }) => {
     if(getOne) setPostData(getOne)
   }, [getOne])
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if(currentId) {
-      dispatch(updatePost(currentId, postData))
-    } else {
+    if(currentId === 0) {
       dispatch(createPost(postData))
+    } else {
+      dispatch(updatePost(currentId, postData))
     }
     
     clear()
