@@ -4,6 +4,7 @@ const Schema = mongoose.Schema
 const postSchema = new Schema({
   title: { type: String, required: true },
   message: { type: String, required: true },
+  name: { type: String, required: true },
   creator: { type: String, required: true },
   tags: { type: Array, required: true },
   selectedFile: { type: String, required: true },
