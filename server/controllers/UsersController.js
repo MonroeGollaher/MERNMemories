@@ -2,6 +2,8 @@ import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
 import User from '../models/User.js'
+
+const secret = 'test'
 export const signIn = async (req, res) => {
   const { email, password } = req.body;
 
@@ -16,7 +18,7 @@ export const signIn = async (req, res) => {
     if (!isPasswordCorrect) return res.status(400).json({ message: "Invalid credentials" });
 
     // @ts-ignore
-    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, 'test', { expiresIn: "1h" });
+    const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, { expiresIn: "1h" });
 
     res.status(200).json({ result: oldUser, token });
   } catch (err) {
@@ -36,8 +38,7 @@ export const signUp = async (req, res) => {
 
     const result = await User.create({ email, password: hashedPassword, name: `${firstName} ${lastName}` });
 
-    // @ts-ignore
-    const token = jwt.sign( { email: result.email, id: result._id }, 'test', { expiresIn: "1h" } );
+    const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "1h" } );
 
     res.status(201).json({ result, token });
   } catch (error) {
